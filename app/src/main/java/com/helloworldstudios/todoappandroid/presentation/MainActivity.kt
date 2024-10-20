@@ -1,4 +1,4 @@
-package com.helloworldstudios.todoappandroid
+package com.helloworldstudios.todoappandroid.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
