@@ -49,8 +49,10 @@ class TaskRepository @Inject constructor(val taskApi: TaskApi) {
                     Resource.Error(data = null, message = "Response body is null.", httpCode = response.code().toString())
                 }
             } else {
-                val errorBodyString = response.errorBody()?.toString()
-                val errorMessage = Utils.extractDetailFromErrorBody(errorBodyString) ?: "Unknown error occurred."
+                val errorBodyString = response.errorBody()?.string() ?: "Empty error body."
+                val errorMessage = Utils.extractDetailFromErrorBody(errorBodyString)
+                    ?: "Unknown error occurred. HTTP ${response.code()} - ${response.message()}"
+
                 Resource.Error(data = null, message = errorMessage, httpCode = response.code().toString())
             }
         } catch (e: Exception) {
@@ -58,66 +60,3 @@ class TaskRepository @Inject constructor(val taskApi: TaskApi) {
         }
     }
 }
-
-
-//class TaskRepository @Inject constructor(val taskApi: TaskApi) {
-//    suspend fun createTask(request: CreateTaskRequest): Resource<CreatedTaskResponse>{
-//        return try {
-//            val response = taskApi.createTask(request)
-//            if (response.isSuccessful){
-//                val responseBody = response.body()
-//                if (responseBody != null){
-//                    Resource.Success(data = responseBody, message = "Task successfully created.", httpCode = response.code().toString())
-//                } else{
-//                    Resource.Error(data = null, message = "Response body is null.", httpCode = response.code().toString())
-//                }
-//            } else{
-//                val errorBodyString = response.errorBody()?.toString()
-//                val errorMessage = Utils.extractDetailFromErrorBody(errorBodyString) ?: "Unknown error occurred."
-//                Resource.Error(data = null, message = errorMessage, httpCode = response.code().toString())
-//            }
-//        } catch (e: Exception){
-//            Resource.Error(data = null, message = e.localizedMessage ?: "An unknown error occurred.", httpCode = null)
-//        }
-//    }
-//
-//    suspend fun updateTask(request: UpdateTaskRequest): Resource<UpdatedTaskResponse>{
-//        return try {
-//            val response = taskApi.updateTask(request)
-//            if (response.isSuccessful){
-//                val responseBody = response.body()
-//                if (responseBody != null){
-//                    Resource.Success(data = responseBody, message = "Task successfully updated.", httpCode = response.code().toString())
-//                } else{
-//                    Resource.Error(data = null, message = "Response body is null.", httpCode = response.code().toString())
-//                }
-//            } else{
-//                val errorBodyString = response.errorBody()?.toString()
-//                val errorMessage = Utils.extractDetailFromErrorBody(errorBodyString) ?: "Unknown error occurred."
-//                Resource.Error(data = null, message = errorMessage, httpCode = response.code().toString())
-//            }
-//        } catch (e: Exception){
-//            Resource.Error(data = null, message = e.localizedMessage ?: "An unknown error occurred.", httpCode = null)
-//        }
-//    }
-//
-//    suspend fun deleteTask(request: DeleteTaskRequest): Resource<DeletedTaskResponse>{
-//        return try {
-//            val response = taskApi.deleteTask(request)
-//            if (response.isSuccessful){
-//                val responseBody = response.body()
-//                if (responseBody != null){
-//                    Resource.Success(data = responseBody, message = "Task successfully deleted.", httpCode = response.code().toString())
-//                } else{
-//                    Resource.Error(data = null, message = "Response body is null.", httpCode = response.code().toString())
-//                }
-//            } else{
-//                val errorBodyString = response.errorBody()?.toString()
-//                val errorMessage = Utils.extractDetailFromErrorBody(errorBodyString) ?: "Unknown error occurred."
-//                Resource.Error(data = null, message = errorMessage, httpCode = response.code().toString())
-//            }
-//        } catch (e: Exception){
-//            Resource.Error(data = null, message = e.localizedMessage ?: "An unknown error occurred.", httpCode = null)
-//        }
-//    }
-//}

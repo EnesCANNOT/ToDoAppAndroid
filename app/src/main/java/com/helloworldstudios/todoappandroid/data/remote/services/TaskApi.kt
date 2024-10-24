@@ -12,12 +12,12 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface TaskApi {
-    @POST("${Constants.USER_API}create")
+    @POST("${Constants.TASK_API}create")
     suspend fun createTask(@Body request: CreateTaskRequest):Response<CreatedTaskResponse>
 
-    @POST("${Constants.USER_API}update")
+    @POST("${Constants.TASK_API}update")
     suspend fun updateTask(@Body request: UpdateTaskRequest): Response<UpdatedTaskResponse>
 
-    @POST("${Constants.USER_API}delete")
+    @POST("${Constants.TASK_API}delete")
     suspend fun deleteTask(@Body request: DeleteTaskRequest): Response<DeletedTaskResponse>
 }
