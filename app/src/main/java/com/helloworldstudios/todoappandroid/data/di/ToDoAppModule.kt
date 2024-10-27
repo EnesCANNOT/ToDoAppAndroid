@@ -1,5 +1,6 @@
 package com.helloworldstudios.todoappandroid.data.di
 
+import com.google.gson.GsonBuilder
 import com.helloworldstudios.todoappandroid.data.remote.services.TaskApi
 import com.helloworldstudios.todoappandroid.domain.repositories.TaskRepository
 import com.helloworldstudios.todoappandroid.util.Constants
@@ -18,7 +19,7 @@ object ToDoAppModule {
     @Provides
     fun retrofitInstance(): Retrofit = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()))
         .build()
 
     @Singleton

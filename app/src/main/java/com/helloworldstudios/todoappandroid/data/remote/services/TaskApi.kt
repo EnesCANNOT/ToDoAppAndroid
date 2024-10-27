@@ -5,10 +5,12 @@ import com.helloworldstudios.todoappandroid.data.remote.requests.taskRequests.De
 import com.helloworldstudios.todoappandroid.data.remote.requests.taskRequests.UpdateTaskRequest
 import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.CreatedTaskResponse
 import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.DeletedTaskResponse
+import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.GetTaskResponse
 import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.UpdatedTaskResponse
 import com.helloworldstudios.todoappandroid.util.Constants
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface TaskApi {
@@ -20,4 +22,7 @@ interface TaskApi {
 
     @POST("${Constants.TASK_API}delete")
     suspend fun deleteTask(@Body request: DeleteTaskRequest): Response<DeletedTaskResponse>
+
+    @GET("${Constants.TASK_API}getAll")
+    suspend fun getAll(): Response<List<GetTaskResponse>>
 }

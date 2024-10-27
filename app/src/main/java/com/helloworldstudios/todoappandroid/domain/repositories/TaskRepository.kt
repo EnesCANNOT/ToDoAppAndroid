@@ -5,6 +5,7 @@ import com.helloworldstudios.todoappandroid.data.remote.requests.taskRequests.De
 import com.helloworldstudios.todoappandroid.data.remote.requests.taskRequests.UpdateTaskRequest
 import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.CreatedTaskResponse
 import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.DeletedTaskResponse
+import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.GetTaskResponse
 import com.helloworldstudios.todoappandroid.data.remote.responses.taskResponses.UpdatedTaskResponse
 import com.helloworldstudios.todoappandroid.data.remote.services.TaskApi
 import com.helloworldstudios.todoappandroid.util.Resource
@@ -32,6 +33,13 @@ class TaskRepository @Inject constructor(val taskApi: TaskApi) {
         return safeApiCall(
             apiCall = { taskApi.deleteTask(request) },
             successMessage = "Task successfully deleted."
+        )
+    }
+
+    suspend fun getAllTasks(): Resource<List<GetTaskResponse>>{
+        return safeApiCall(
+            apiCall = {taskApi.getAll()},
+            successMessage = "Tasks successfully fetched."
         )
     }
 

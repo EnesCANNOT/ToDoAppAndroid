@@ -12,6 +12,7 @@ lifecycleViewmodelKtx = "2.8.6"
 material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.1.4"
+materialVersion = "1.9.0"
 squareupRetrofit = "2.9.0"
 navigationFragmentKtx = "2.8.3"
 navigationUiKtx = "2.8.3"
@@ -31,6 +32,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 squareup-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "squareupRetrofit" }
 squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "squareupRetrofit" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
